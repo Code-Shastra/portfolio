@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chanakya Pandey | Portfolio</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+    }
+
+    header {
+      padding: 50px 20px;
+      text-align: center;
+      background: #020617;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 36px;
+      color: #38bdf8;
+    }
+
+    header p {
+      margin-top: 10px;
+      color: #94a3b8;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #38bdf8;
+      border: none;
+      border-radius: 8px;
+      color: black;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 35px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #38bdf8;
+    }
+
+    .projects {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .card {
+      flex: 1;
+      min-width: 180px;
+      background: #020617;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #1e293b;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      background: #38bdf8;
+      color: black;
+      transform: translateY(-4px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #020617;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    /* Fade Animation */
+    .fade {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Chanakya Pandey</h1>
+  <p>Frontend Developer | Founder @ Nestlytics</p>
+  <button class="btn">Contact Me</button>
+</header>
+
+<section class="fade">
+  <h2>About</h2>
+  <p>
+    I am a beginner frontend developer with knowledge of C, Java and basic web development.
+    I am eager to learn, build projects and grow in tech.
+  </p>
+</section>
+
+<section class="fade">
+  <h2>Skills</h2>
+  <p>C • Java • HTML • CSS • Basic JavaScript</p>
+</section>
+
+<section class="fade">
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="card">Portfolio Website</div>
+    <div class="card">Login Page</div>
+    <div class="card">Java Calculator</div>
+  </div>
+</section>
+
+<section class="fade">
+  <h2>Contact</h2>
+  <p>Email: chanakyapandey29@gmail.com</p>
+</section>
+
+<footer>
+  © 2026 Chanakya Pandey
+</footer>
+
+<!-- Cursor Star Animation -->
+<script>
+document.addEventListener("mousemove", function(e) {
+  let star = document.createElement("div");
+  star.innerHTML = "✦";
+  star.style.position = "fixed";
+  star.style.left = e.clientX + "px";
+  star.style.top = e.clientY + "px";
+  star.style.color = "#38bdf8";
+  star.style.fontSize = "12px";
+  star.style.pointerEvents = "none";
+  star.style.transition = "all 0.6s ease";
+
+  document.body.appendChild(star);
+
+  setTimeout(() => {
+    star.style.transform = "translateY(-20px)";
+    star.style.opacity = "0";
+  }, 10);
+
+  setTimeout(() => {
+    star.remove();
+  }, 600);
+});
+</script>
+
+<!-- Scroll Animation -->
+<script>
+const elements = document.querySelectorAll('.fade');
+
+window.addEventListener('scroll', () => {
+  elements.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (top < windowHeight - 50) {
+      el.classList.add('show');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
