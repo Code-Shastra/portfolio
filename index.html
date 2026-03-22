@@ -7,41 +7,81 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #0f172a;
       color: #e2e8f0;
-    }
-
-    header {
-      padding: 50px 20px;
-      text-align: center;
+      overflow-x: hidden;
       background: #020617;
     }
 
+    /* Animated Background */
+    body::before {
+      content: "";
+      position: fixed;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        #0ea5e9,
+        #6366f1,
+        #22c55e,
+        #0ea5e9
+      );
+      animation: moveBg 12s linear infinite;
+      opacity: 0.08;
+      z-index: -1;
+    }
+
+    @keyframes moveBg {
+      0% { transform: translate(0,0); }
+      50% { transform: translate(-25%, -25%); }
+      100% { transform: translate(0,0); }
+    }
+
+    header {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
     h1 {
-      margin: 0;
-      font-size: 36px;
+      font-size: 40px;
       color: #38bdf8;
+      text-shadow: 0 0 10px #38bdf8;
     }
 
     header p {
-      margin-top: 10px;
-      color: #94a3b8;
+      color: #cbd5f5;
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #38bdf8;
+      object-fit: cover;
     }
 
     .btn {
       margin-top: 20px;
       padding: 10px 20px;
-      background: #38bdf8;
+      background: linear-gradient(45deg, #38bdf8, #6366f1);
       border: none;
       border-radius: 8px;
-      color: black;
+      color: white;
       cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #38bdf8;
     }
 
     section {
-      padding: 35px 20px;
+      padding: 40px 20px;
       max-width: 800px;
-      margin: auto;
+      margin: 20px auto;
+      background: rgba(15, 23, 42, 0.7);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
     }
 
     h2 {
@@ -57,23 +97,22 @@
     .card {
       flex: 1;
       min-width: 180px;
-      background: #020617;
+      background: rgba(30, 41, 59, 0.7);
       padding: 15px;
       border-radius: 10px;
-      border: 1px solid #1e293b;
       transition: 0.3s;
     }
 
     .card:hover {
       background: #38bdf8;
       color: black;
-      transform: translateY(-4px);
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px #38bdf8;
     }
 
     footer {
       text-align: center;
       padding: 15px;
-      background: #020617;
       font-size: 13px;
       color: #94a3b8;
     }
@@ -81,8 +120,8 @@
     /* Fade Animation */
     .fade {
       opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
     }
 
     .fade.show {
@@ -90,36 +129,63 @@
       transform: translateY(0);
     }
 
+    /* Cursor */
+    .cursor {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #38bdf8;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+
   </style>
 </head>
 
 <body>
 
+<div class="cursor"></div>
+
 <header>
+  <img src="chanakya.jpg" class="profile-img">
   <h1>Chanakya Pandey</h1>
   <p>Frontend Developer | Founder @ Nestlytics</p>
-  <button class="btn">Contact Me</button>
+
+  <a href="mailto:chanakyapandey29@gmail.com">
+    <button class="btn">Contact Me</button>
+  </a>
 </header>
 
 <section class="fade">
   <h2>About</h2>
   <p>
-    I am a beginner frontend developer with knowledge of C, Java and basic web development.
-    I am eager to learn, build projects and grow in tech.
+    I am a passionate frontend developer and founder of Nestlytics.
+    I enjoy building modern websites and continuously improving my skills.
   </p>
 </section>
 
 <section class="fade">
   <h2>Skills</h2>
   <p>C • Java • HTML • CSS • Basic JavaScript</p>
+  <p>Learning: React, Advanced JavaScript</p>
 </section>
 
 <section class="fade">
   <h2>Projects</h2>
   <div class="projects">
-    <div class="card">Portfolio Website</div>
-    <div class="card">Login Page</div>
-    <div class="card">Java Calculator</div>
+    <div class="card">
+      <h3>Portfolio Website</h3>
+      <p>Built using HTML, CSS with animations</p>
+    </div>
+    <div class="card">
+      <h3>Login Page</h3>
+      <p>Simple authentication UI using JavaScript</p>
+    </div>
+    <div class="card">
+      <h3>Java Calculator</h3>
+      <p>Console based calculator using Java</p>
+    </div>
   </div>
 </section>
 
@@ -132,29 +198,13 @@
   © 2026 Chanakya Pandey
 </footer>
 
-<!-- Cursor Star Animation -->
+<!-- Cursor Script -->
 <script>
-document.addEventListener("mousemove", function(e) {
-  let star = document.createElement("div");
-  star.innerHTML = "✦";
-  star.style.position = "fixed";
-  star.style.left = e.clientX + "px";
-  star.style.top = e.clientY + "px";
-  star.style.color = "#38bdf8";
-  star.style.fontSize = "12px";
-  star.style.pointerEvents = "none";
-  star.style.transition = "all 0.6s ease";
+const cursor = document.querySelector(".cursor");
 
-  document.body.appendChild(star);
-
-  setTimeout(() => {
-    star.style.transform = "translateY(-20px)";
-    star.style.opacity = "0";
-  }, 10);
-
-  setTimeout(() => {
-    star.remove();
-  }, 600);
+document.addEventListener("mousemove", e => {
+  cursor.style.left = e.clientX + "px";
+  cursor.style.top = e.clientY + "px";
 });
 </script>
 
@@ -162,16 +212,15 @@ document.addEventListener("mousemove", function(e) {
 <script>
 const elements = document.querySelectorAll('.fade');
 
-window.addEventListener('scroll', () => {
-  elements.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-
-    if (top < windowHeight - 50) {
-      el.classList.add('show');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
     }
   });
 });
+
+elements.forEach(el => observer.observe(el));
 </script>
 
 </body>
