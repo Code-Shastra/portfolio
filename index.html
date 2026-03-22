@@ -4,124 +4,130 @@
   <title>Chanakya Pandey | Portfolio</title>
 
   <style>
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      color: #e2e8f0;
-      overflow-x: hidden;
-      background: #020617;
+      font-family: 'Inter', sans-serif;
+      background: #f8f5f0;
+      color: #2b2b2b;
     }
 
-    /* Animated Background */
-    body::before {
+    /* NAVBAR */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      z-index: 100;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #5a3e2b;
+      font-weight: 600;
+      position: relative;
+    }
+
+    nav a::after {
       content: "";
-      position: fixed;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        45deg,
-        #0ea5e9,
-        #6366f1,
-        #22c55e,
-        #0ea5e9
-      );
-      animation: moveBg 12s linear infinite;
-      opacity: 0.08;
-      z-index: -1;
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: #c89b6d;
+      left: 0;
+      bottom: -4px;
+      transition: 0.3s;
     }
 
-    @keyframes moveBg {
-      0% { transform: translate(0,0); }
-      50% { transform: translate(-25%, -25%); }
-      100% { transform: translate(0,0); }
+    nav a:hover::after {
+      width: 100%;
     }
 
     header {
-      padding: 60px 20px;
       text-align: center;
-    }
-
-    h1 {
-      font-size: 40px;
-      color: #38bdf8;
-      text-shadow: 0 0 10px #38bdf8;
-    }
-
-    header p {
-      color: #cbd5f5;
+      padding: 80px 20px;
     }
 
     .profile-img {
       width: 120px;
-      height: 120px;
       border-radius: 50%;
-      border: 3px solid #38bdf8;
-      object-fit: cover;
+      border: 3px solid #c89b6d;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin: 15px 0 5px;
+      letter-spacing: -1px;
+    }
+
+    #typing {
+      color: #8b5e3c;
+      min-height: 22px;
     }
 
     .btn {
-      margin-top: 20px;
+      margin: 8px;
       padding: 10px 20px;
-      background: linear-gradient(45deg, #38bdf8, #6366f1);
-      border: none;
-      border-radius: 8px;
+      border-radius: 30px;
+      background: #c89b6d;
       color: white;
-      cursor: pointer;
+      text-decoration: none;
       transition: 0.3s;
     }
 
     .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #38bdf8;
+      background: #8b5e3c;
+      transform: translateY(-2px);
     }
 
     section {
-      padding: 40px 20px;
       max-width: 800px;
-      margin: 20px auto;
-      background: rgba(15, 23, 42, 0.7);
-      border-radius: 12px;
-      backdrop-filter: blur(10px);
+      margin: 40px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
 
     h2 {
-      color: #38bdf8;
+      margin-bottom: 10px;
+      color: #5a3e2b;
     }
 
     .projects {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 15px;
     }
 
     .card {
-      flex: 1;
-      min-width: 180px;
-      background: rgba(30, 41, 59, 0.7);
       padding: 15px;
-      border-radius: 10px;
+      border-radius: 12px;
+      background: #fafafa;
       transition: 0.3s;
     }
 
     .card:hover {
-      background: #38bdf8;
-      color: black;
       transform: translateY(-5px);
-      box-shadow: 0 0 20px #38bdf8;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
 
     footer {
       text-align: center;
-      padding: 15px;
-      font-size: 13px;
-      color: #94a3b8;
+      padding: 20px;
+      color: #777;
     }
 
-    /* Fade Animation */
     .fade {
       opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease-out;
+      transform: translateY(40px);
+      transition: 0.8s;
     }
 
     .fade.show {
@@ -129,67 +135,48 @@
       transform: translateY(0);
     }
 
-    /* Cursor */
-    .cursor {
-      width: 18px;
-      height: 18px;
-      border: 2px solid #38bdf8;
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-    }
-
   </style>
 </head>
 
 <body>
 
-<div class="cursor"></div>
+<nav>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
 
 <header>
-  <img src="chanakya.jpg" class="profile-img">
+  <img src="yourphoto.jpg" class="profile-img">
   <h1>Chanakya Pandey</h1>
-  <p>Frontend Developer | Founder @ Nestlytics</p>
+  <p id="typing"></p>
 
-  <a href="mailto:chanakyapandey29@gmail.com">
-    <button class="btn">Contact Me</button>
-  </a>
+  <a href="mailto:chanakyapandey29@gmail.com" class="btn">Contact</a>
+  <a href="https://github.com/code-shastra" class="btn" target="_blank">GitHub</a>
 </header>
 
-<section class="fade">
+<section id="about" class="fade">
   <h2>About</h2>
-  <p>
-    I am a passionate frontend developer and founder of Nestlytics.
-    I enjoy building modern websites and continuously improving my skills.
-  </p>
+  <p>I am a passionate frontend developer and founder of Nestlytics.</p>
 </section>
 
-<section class="fade">
+<section id="skills" class="fade">
   <h2>Skills</h2>
-  <p>C • Java • HTML • CSS • Basic JavaScript</p>
-  <p>Learning: React, Advanced JavaScript</p>
+  <p>C • Java • HTML • CSS • JavaScript</p>
 </section>
 
-<section class="fade">
+<section id="projects" class="fade">
   <h2>Projects</h2>
   <div class="projects">
     <div class="card">
       <h3>Portfolio Website</h3>
-      <p>Built using HTML, CSS with animations</p>
-    </div>
-    <div class="card">
-      <h3>Login Page</h3>
-      <p>Simple authentication UI using JavaScript</p>
-    </div>
-    <div class="card">
-      <h3>Java Calculator</h3>
-      <p>Console based calculator using Java</p>
+      <a href="https://code-shastra.github.io/portfolio/" class="btn">View</a>
     </div>
   </div>
 </section>
 
-<section class="fade">
+<section id="contact" class="fade">
   <h2>Contact</h2>
   <p>Email: chanakyapandey29@gmail.com</p>
 </section>
@@ -198,29 +185,28 @@
   © 2026 Chanakya Pandey
 </footer>
 
-<!-- Cursor Script -->
 <script>
-const cursor = document.querySelector(".cursor");
+const text = "Frontend Developer | Founder @ Nestlytics";
+let i = 0;
 
-document.addEventListener("mousemove", e => {
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
-});
-</script>
+function typeEffect() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 40);
+  }
+}
+typeEffect();
 
-<!-- Scroll Animation -->
-<script>
-const elements = document.querySelectorAll('.fade');
-
-const observer = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('show');
+      entry.target.classList.add("show");
     }
   });
 });
 
-elements.forEach(el => observer.observe(el));
+document.querySelectorAll(".fade").forEach(el => observer.observe(el));
 </script>
 
 </body>
